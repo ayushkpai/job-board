@@ -2,9 +2,12 @@
 <html>
   <head>
     <title><%= content_for(:title) || "Job Board" %></title>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Job Board">
     <meta name="mobile-web-app-capable" content="yes">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -20,12 +23,33 @@
     <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css">
+
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+        >
   </head>
 
-  <body>
-    <main class="container">
-      <%= yield %>
-    </main>  
-  </body>
+    <body>
+      <header class="container">
+        <nav>
+          <ul>
+            <li><strong>JobBoard</strong></li>
+            <li><%= link_to "All Jobs", root_path %></li>
+          </ul>
+
+          <ul>
+            <li><%= link_to "Post a job", new_job_path %></li>
+          </ul>
+        </nav>
+      </header>
+
+      <main class="container">
+        <%= tag.article alert, style: "color:red;" if alert %>
+        <%= tag.article notice, style: "color:green;" if notice %>
+
+        <%= yield %>
+      </main>
+    </body>
 </html>
+
