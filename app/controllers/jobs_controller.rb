@@ -41,7 +41,7 @@ class JobsController < ApplicationController
 
   def job_params
     params.expect(job: [
-      :title, :company, :salary, :region, :apply_url, :apply_email
+      :title, :company, :salary, :region, :apply_url, :apply_email, :description
     ])
   end
 
